@@ -1,5 +1,7 @@
 package _03_More_Array_Fun;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 public class MoreArrayFun {
@@ -42,30 +44,13 @@ public class MoreArrayFun {
 	//   in a completely random order. Almost every run of the program should result in a different order.
 	static void printStringsRandomly (String[] stringArray) {
 		Random r = new Random();
-		int randomNumber = 3;
-		int[] rNumberBlackList = new int[stringArray.length];
-		
-		for (int i = rNumberBlackList.length-1; i > 0; i--) {
-			rNumberBlackList[i] = stringArray.length-i;
-			System.out.println(rNumberBlackList[i]);
+		ArrayList<String> words = new ArrayList <String>(Arrays.asList(stringArray));
+		while(words.size()>0) {
+			int index = r.nextInt(words.size());
+			System.out.println(words.get(index));
+			words.remove(index);
 		}
 		
-		Boolean isRNumberBlackListed = true;
-		
-		for (int i = 0; i < stringArray.length; i++) {
-			while(isRNumberBlackListed) {
-				randomNumber = r.nextInt(stringArray.length);
-				//System.out.println(randomNumber);
-				
-				for (int j = 0; j < rNumberBlackList.length; j++) {
-					isRNumberBlackListed = false;
-					if(randomNumber != rNumberBlackList[j]) {
-						isRNumberBlackListed = true;
-					}
-				}
-			}
-			System.out.println(stringArray[randomNumber]);
-		}
 	}
 	
 }
